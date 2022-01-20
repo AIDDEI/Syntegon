@@ -1,0 +1,420 @@
+/* Standaard opmaak */
+@font-face {
+    font-family: helveticaNeue;
+    src: url("font/HelveticaNeue-Roman.woff") format("woff"), url("font/HelveticaNeue-Roman.ttf") format("truetype");
+}
+
+body {
+    background-color: #fefefe;
+    color: #28323c;
+    font-size: 1.125rem;
+    font-family: helveticaNeue, sans-serif;
+}
+
+h1 {
+    color: #00be82;
+    font-size: 3.4375rem;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #00be82;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+h3 {
+    color: #28323c;
+    font-size: 1.875rem;
+}
+
+a {
+    color: #00be82;
+    transition: 0.5s;
+}
+
+a:hover {
+    color: #28323c;
+    transition: 0.5s;
+}
+
+.button {
+    background-color: #00be82;
+    color: #fefefe;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 40px;
+    margin: 4px 2px;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.button:hover{
+    background-color: #28323c;
+    color: #fefefe;
+    transition: 0.5s;
+}
+
+span {
+    font-size: 0.8rem;
+}
+
+hr {
+    border: 2.5px solid #ededed;
+    background-color: #ededed;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 99%;
+    font-size: 0.8rem;
+}
+
+footer img {
+    height: 50%;
+    float: left;
+}
+
+.footerRight {
+    float: right;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+thead tr th {
+    position: sticky;
+    top: 0;
+    padding: 4px 10px;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #fefefe;
+}
+
+tbody tr:nth-child(even){
+    background-color: #ededed;
+}
+
+td {
+    padding: 4px 10px;
+}
+
+
+/* Scrollbar & Selectie */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ededed;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00be82;
+    border-radius: 5px;
+}
+
+::selection {
+    background-color: #00be82;
+    color: #fefefe;
+}
+
+
+/* Login en account maken */
+.caribbeanGreenBackGround {
+    background-color: #00be82;
+    color: #fefefe;
+}
+
+.caribbeanGreenBackGround a {
+    color: #28323c;
+    transition: 0.5s;
+    font-size: 0.8rem;
+    float: left;
+    text-align: center;
+}
+.caribbeanGreenBackGround a:hover {
+    color: #fefefe;
+    transition: 0.5s;
+}
+
+.caribbeanGreenBackGround h3 {
+    color: #fefefe;
+    text-align: center;
+}
+
+.buttonLogin {
+    background-color: #28323c;
+    color: #fefefe;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 40px;
+    transition: 0.5s;
+}
+
+.buttonLogin:hover {
+    background-color: #fefefe;
+    color: #28323c;
+    transition: 0.5s;
+}
+
+.buttonAccount {
+    background-color: #28323c;
+    color: #fefefe;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 40px;
+    transition: 0.5s;
+    float: right;
+}
+
+.buttonAccount:hover {
+    background-color: #fefefe;
+    color: #28323c;
+    transition: 0.5s;
+}
+
+.imgLogin {
+    display: block;
+    width: 30%;
+    margin: 50px auto -20px auto;
+}
+
+.imgLoginSmall {
+    display: block;
+    width: 5%;
+    margin: 190px auto -20px auto;
+}
+
+.inputLogin {
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    margin-top: 2px;
+    border: 1px solid #28323c;
+    color: #28323c;
+    font-family: helveticaNeue, sans-serif;
+}
+
+.inputAccount {
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+    margin-top: 2px;
+    border: 1px solid #28323c;
+    color: #28323c;
+    font-family: helveticaNeue, sans-serif;
+}
+
+.divLogin {
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.divAccount {
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+.bottom {
+    margin-top: 125px;
+}
+
+
+/* Navbar */
+.syntegonNav {
+    width: 376px;
+}
+
+.reservationNav {
+    width: 51.2px;
+    margin-top: 8.5px;
+}
+
+.profileNav {
+    width: 90px;
+    float: right;
+    margin-top: -12px;
+}
+
+.navbar {
+    overflow: hidden;
+    justify-content: space-between;
+    display:flex;
+}
+
+.navbar a {
+    padding: 14px 16px;
+    transition: 0.5s;
+}
+
+.smallerWidth {
+    height: 66.5px;
+}
+
+.navbar a:hover {
+    -webkit-filter: brightness(60%);
+    transition: 0.5s;
+}
+
+.flex {
+    display: flex;
+}
+
+
+/* Homepage */
+.screenHalfLeft {
+    width: 40%;
+    max-height: 30%;
+    padding-right: 16px;
+    float: left;
+    overflow: hidden;
+}
+
+.screenHalfRight {
+    width: 40%;
+    max-height: 30%;
+    padding-right: 16px;
+    float: right;
+    overflow: hidden;
+}
+
+.block {
+    background-color: #ededed;
+    padding: 14px 16px;
+    margin-top: -25px;
+    overflow: scroll;
+}
+
+
+/* Mijn profiel */
+.block2 {
+    background-color: #ededed;
+    padding: 14px 16px;
+    margin-top: -25px;
+}
+
+
+/* Hoe te reserveren */
+.divBlock {
+    background-color: #ededed;
+    padding-top: 4px;
+    margin: 0 auto 15px auto;
+}
+
+.paddingBottom {
+    padding-bottom: 20px;
+}
+
+
+/* Pop-up */
+.popupLink {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    width: 50%;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.animate {
+    -webkit-animation: animateZoom 0.6s;
+    animation: animateZoom 0.6s;
+}
+
+@-webkit-keyframes animateZoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animateZoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+}
+
+.imgContainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.avatar {
+    width: 50%;
+    height: 50%;
+}
+
+.errors {
+    color: red;
+}
+
+.map {
+    width: 25%;
+    float: right;
+    margin-right: 150px;
+}
