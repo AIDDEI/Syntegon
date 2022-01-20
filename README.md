@@ -1,2 +1,1 @@
-# Syntegon
-Reserveringssysteem voor Syntegon Schiedam medewerkers
+https://aiddei.github.io/Syntegon/
