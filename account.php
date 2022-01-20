@@ -2,24 +2,34 @@
 /** @var mysqli $db */
 require_once("config.php");
 
+//Set all post-back variables empty at the start
 $name = $lastname = $email = $phone = "";
 
-if (!empty($_POST)){
+//Check if submit has been posted
+if (isset($_POST['submit'])){
+    //Set all necessary variables to user input
+    //Prevent SQL injections with mysqli_escape_string
     $name = mysqli_escape_string($db, $_POST['name']);
     $lastname = mysqli_escape_string($db, $_POST['lastname']);
     $email = mysqli_escape_string($db, $_POST['email']);
     $phone = mysqli_escape_string($db, $_POST['phone']);
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
+    //Hash password
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
+    //Check for errors, like empty fields
     require_once("new_account_validation.php");
 
+    //Check if there are no errors
     if(empty($errors)){
+        //Query to add the data into the database
         $sql = "INSERT INTO users (id, name, lastname, email, phone, password)
             VALUES ('', '$name', '$lastname', '$email', '$phone', '$hashed')";
 
+        //Check if the user has entered the same password twice
         if($password == $password2){
+            //Check whether the data has been added to the database
             if(mysqli_query($db, $sql)) {
                 echo "*Account succesvol toegevoegd";
             } else {
@@ -29,6 +39,7 @@ if (!empty($_POST)){
             $errors['samePassword'] = "Voer twee keer hetzelfde wachtwoord in";
         }
     }
+    //Close the database
     mysqli_close($db);
 }
 
@@ -88,7 +99,7 @@ if (!empty($_POST)){
                     <input class="inputAccount" id="password2" type="password" placeholder="Voer hier uw wachtwoord nog een keer in" name="password2">
                 </div>
                 <div>
-                    <button class="buttonAccount" type="submit">Account maken</button>
+                    <button class="buttonAccount" name="submit" type="submit">Account maken</button>
                     <?php if (isset($errors['samePassword'])) { ?>
                         <div><span class="errors"><?php echo $errors['samePassword']; ?></span></div>
                     <?php } ?>

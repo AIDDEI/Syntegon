@@ -2,9 +2,11 @@
 /** @var mysqli $db */
 include_once("main_head.php");
 
+//Get the 'loggedInUser' session data
 $id = mysqli_escape_string($db, $_SESSION['loggedInUser']['id']);
 $email = mysqli_escape_string($db, $_SESSION['loggedInUser']['email']);
 
+//Getting all necessary user info
 $profile_query = mysqli_query($db, "SELECT name, lastname, phone FROM users WHERE id='$id' AND email='$email'");
 $user = mysqli_fetch_assoc($profile_query);
 ?>

@@ -2,23 +2,35 @@
 /** @var mysqli $db */
 include_once("main_head.php");
 
+//Get the users id
 $id = $_SESSION['loggedInUser']['id'];
 
+//Check if 'update' has been posted
 if(isset($_POST['update'])){
+    //Query to get the users info
     $query = mysqli_query($db, "SELECT * FROM users WHERE id='$id'");
     $user = mysqli_fetch_array($query);
 
+    //Set variables to user input
     $oldPassword = $_POST['oldPassword'];
     $newPassword1 = $_POST['newPassword1'];
     $newPassword2 = $_POST['newPassword2'];
 
+    //Check for errors, like empty fields
     require_once("new_password_validation.php");
 
+    //Check if the array errors is empty
     if(empty($errors)){
+        //Check if the entered old password is the same as the password inside the database
         if(password_verify($oldPassword, $user['password'])){
+            //Check if the new passwords are the same
             if($newPassword1 == $newPassword2){
+                //Hash the new password
                 $hash = password_hash($newPassword1, PASSWORD_DEFAULT);
+                //Query to update the password in the database
                 $update_query = mysqli_query($db, "UPDATE users SET password='$hash' WHERE id='$id'");
+
+                //Check if the data has been added to the database
                 if($update_query){
                     header('Location: update_success.php');
                     exit;
@@ -32,6 +44,7 @@ if(isset($_POST['update'])){
             $errors['wrongPassword'] = "De combinatie van email en wachtwoord is bij ons niet bekend";
         }
     }
+    //Close the connection to the database
     mysqli_close($db);
 }
 ?>

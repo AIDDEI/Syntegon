@@ -2,6 +2,7 @@
 /** @var mysqli $db */
 include_once("main_head.php");
 
+//Get the users id
 $id = $_SESSION['loggedInUser']['id'];
 ?>
 
@@ -26,11 +27,13 @@ $id = $_SESSION['loggedInUser']['id'];
             </thead>
             <tbody>
             <?php
+            //Getting all the reservations of the user
             $findReservations = mysqli_query($db, "SELECT reservations.id, reservations.date, reservations.start_time, 
                                                         reservations.end_time, departments.name FROM reservations 
                                                         INNER JOIN departments ON reservations.department_id = departments.id 
                                                         WHERE user_id = '$id' AND reservations.date >= CURRENT_DATE
                                                         ORDER BY reservations.date ASC");
+            //Setting the variables in a while loop, so that all reservations of the user appear in the overview, regardless of the amount
             while($row = mysqli_fetch_assoc($findReservations)){
                 $reservation_id = $row['id'];
                 $date = $row['date'];

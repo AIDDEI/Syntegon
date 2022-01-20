@@ -1,6 +1,8 @@
 <?php
+//Set the array empty
 $errors = [];
 
+//Errors for the old password
 if(strlen($oldPassword) < 8){
     $errors['oldPassword'] = "Uw wachtwoord moet minimaal 8 tekens lang zijn";
 }
@@ -11,6 +13,7 @@ if($oldPassword == ""){
     $errors['oldPassword'] = "Vul uw wachtwoord in";
 }
 
+//Errors for the new password
 if(strlen($newPassword1) < 8){
     $errors['newPassword1'] = "Een nieuw wachtwoord moet minimaal 8 tekens lang zijn";
 }
@@ -21,6 +24,7 @@ if($newPassword1 == ""){
     $errors['newPassword1'] = "Vul een nieuw wachtwoord in";
 }
 
+//Same errors, but for the second input of the new password
 if(strlen($newPassword2) < 8){
     $errors['newPassword2'] = "Een nieuw wachtwoord moet minimaal 8 tekens lang zijn";
 }
