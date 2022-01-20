@@ -12,7 +12,7 @@ require_once("config.php");
 
 if (isset($_POST['submit'])) {
     $email = mysqli_escape_string($db, $_POST['email']);
-    $password = mysqli_escape_string($db, $_POST['password']);
+    $password = $_POST['password'];
 
     $errors = [];
     if($email == '') {
