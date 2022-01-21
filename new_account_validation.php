@@ -41,7 +41,7 @@ if($phone == ""){
 if(strlen($password) < 8){
     $errors['password'] = "Een wachtwoord moet minimaal 8 tekens lang zijn";
 }
-if(strlen($password) > 255){
+if(strlen($password) > 50){
     $errors['password'] = "Een wachtwoord kan op onze website niet langer zijn dan 255 tekens";
 }
 if($password == ""){
@@ -52,7 +52,7 @@ if($password == ""){
 if(strlen($password2) < 8){
     $errors['password2'] = "Een wachtwoord moet minimaal 8 tekens lang zijn";
 }
-if(strlen($password2) > 255){
+if(strlen($password2) > 50){
     $errors['password2'] = "Een wachtwoord kan op onze website niet langer zijn dan 255 tekens";
 }
 if($password2 == ""){
