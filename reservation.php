@@ -24,7 +24,7 @@ if(isset($_GET['id'])){
     if(mysqli_num_rows($result) == 1){
         $reservation = mysqli_fetch_assoc($result);
     } else {
-        echo "Deze reservering bestaat niet";
+        $unknown_reservation = "Deze reservering bestaat niet";
     }
 
     //Getting the department name
@@ -34,7 +34,7 @@ if(isset($_GET['id'])){
     $get_department_name = mysqli_query($db, $query_department_name);
     $department = mysqli_fetch_assoc($get_department_name);
 } else {
-    echo "Er is iets misgegaan...";
+    $fail = "Er is iets misgegaan...";
 }
 
 //Setting all dates and time in the correct format
@@ -48,9 +48,27 @@ $time = "van " . date('H:i', strtotime($reservation['start_time'])) . " tot " . 
 
     <head>
         <title>Reservering <?php echo htmlentities($date); ?></title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="images/syntegon_header_logo.png">
     </head>
 
     <body>
+        <span class="errors"><?php echo $unknown_reservation ?? ''; ?></span>
+        <span class="errors"><?php echo $fail ?? ''; ?></span>
+        <nav class="navbar">
+            <a href="home.php"><img class="syntegonNav" src="images/syntegon_logo.png" alt="Syntegon logo volledig"></a>
+            <div class="flex">
+                <a href="how-to-reserve.php"><img class="reservationNav" src="images/plusteken.png" alt="Nieuwe reservering maken icoon"></a>
+                <a href="profile.php" class="smallerWidth"><img class="profileNav" src="images/default_avatar.png"></a>
+            </div>
+        </nav>
+        <hr>
+
         <h1><?php echo "Reservering " . htmlentities($date); ?></h1>
         <br>
         <div>
@@ -75,7 +93,11 @@ $time = "van " . date('H:i', strtotime($reservation['start_time'])) . " tot " . 
             </div>
         </div>
 
-        <?php include_once("main_footer.php"); ?>
+        <footer>
+            <hr>
+            <img src="images/syntegon_header_logo.png" alt="Syntegon logo klein">
+            <a class="footerRight" href="logout.php">Uitloggen</a>
+        </footer>
     </body>
 
 </html>

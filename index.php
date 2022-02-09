@@ -61,6 +61,11 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if($login) {
+    //Go to the homepage
+    header("Location: home.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -82,35 +87,28 @@ if (isset($_POST['submit'])) {
     <body class="caribbeanGreenBackGround">
         <img class="imgLogin" src="images/syntegon_logo_alternate.png" alt="Syntegon logo volledig">
         <h3>Schiedam</h3>
-        <?php
-            //Check if the user is already logged in
-            if($login) {
-                //Go to the homepage
-                header("Location: home.php");
-            } else {
-        ?>
         <form action="" method="post">
             <div class="divLogin">
                 <label for="email">E-mailadres</label>
                 <br>
                 <span class="errors"><?= $errors['email'] ?? '' ?></span>
-                <input id="email" type="text" placeholder="Voer hier uw e-mailadres in" class="inputLogin" name="email" value="<?php if(isset($email)){ echo htmlentities($email); } else{ echo ""; } ?>">
+                <input id="email" type="text" placeholder="Voer hier uw e-mailadres in" class="inputLogin" name="email"
+                       value="<?php if(isset($email)){ echo htmlentities($email); } else{ echo ""; } ?>">
             </div>
             <div class="divLogin">
                 <label for="password">Wachtwoord</label>
                 <br>
-                <span class="errors"><?= $errors['password'] ?? '' ?></span>
+                <span class="errors"><?php echo $errors['password'] ?? '' ?></span>
                 <input id="password" type="password" placeholder="Voer hier uw wachtwoord in" class="inputLogin" name="password">
             </div>
             <div class="divLogin">
                 <div class="center">
                     <input class="buttonLogin" type="submit" name="submit" value="Aanmelden">
                     <br>
-                    <span class="errors"><?= $errors['loginFailed'] ?? '' ?></span>
+                    <span class="errors"><?php echo $errors['loginFailed'] ?? '' ?></span>
                 </div>
             </div>
         </form>
-        <?php } ?>
         <img class="imgLoginSmall" src="images/syntegon_header_alternate.jpg" alt="Syntegon logo verkleind">
         <footer>
             <a href="account.php">Maak een account aan!</a>

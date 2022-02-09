@@ -31,9 +31,9 @@ if (isset($_POST['submit'])){
         if($password == $password2){
             //Check whether the data has been added to the database
             if(mysqli_query($db, $sql)) {
-                echo "*Account succesvol toegevoegd";
+                $success = "*Account succesvol toegevoegd";
             } else {
-                echo "Er is een fout opgetreden waardoor het account niet is toegevoegd...";
+                $error = "Er is een fout opgetreden waardoor het account niet is toegevoegd...";
             }
         } else {
             $errors['samePassword'] = "Voer twee keer hetzelfde wachtwoord in";
@@ -59,6 +59,8 @@ if (isset($_POST['submit'])){
     </head>
 
     <body class="caribbeanGreenBackGround">
+        <span class="errors"><?php echo $success ?? ''; ?></span>
+        <span class="errors"><?php $error ?? ''; ?></span>
         <div>
             <h3>Maak een account aan</h3>
             <form action="" method="post" class="divAccount">

@@ -24,6 +24,9 @@ $user = mysqli_fetch_assoc($user_query);
 
 //Set the language of the date to Dutch
 setlocale(LC_TIME, 'NL_nl');
+
+//Query for a quick overview of all reservations of the user
+$reservation_query = mysqli_query($db, "SELECT date, start_time, end_time FROM reservations WHERE user_id='$id' AND date >= CURRENT_DATE ORDER BY date ASC");
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +34,25 @@ setlocale(LC_TIME, 'NL_nl');
 
     <head>
         <title>Home</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="images/syntegon_header_logo.png">
     </head>
 
     <body>
+        <nav class="navbar">
+            <a href="home.php"><img class="syntegonNav" src="images/syntegon_logo.png" alt="Syntegon logo volledig"></a>
+            <div class="flex">
+                <a href="how-to-reserve.php"><img class="reservationNav" src="images/plusteken.png" alt="Nieuwe reservering maken icoon"></a>
+                <a href="profile.php" class="smallerWidth"><img class="profileNav" src="images/default_avatar.png"></a>
+            </div>
+        </nav>
+        <hr>
+
         <h1><?php echo  htmlentities($greeting) . htmlentities($user['name']) . " " . htmlentities($user['lastname']); ?></h1>
         <div class="screenHalfLeft">
             <h2><a href="reservations.php">Uw Reserveringen</a></h2>
@@ -48,22 +67,13 @@ setlocale(LC_TIME, 'NL_nl');
                     </thead>
                     <tbody>
                     <?php
-                    //Query for a quick overview of all reservations of the user
-                    $reservation_query = mysqli_query($db, "SELECT date, start_time, end_time FROM reservations WHERE user_id='$id' AND date >= CURRENT_DATE ORDER BY date ASC");
                     //Setting the variables in a while loop, so that all reservations of the user appear in the overview, regardless of the amount
                     while($row = mysqli_fetch_assoc($reservation_query)){
-                        $reservation_date = $row['date'];
-                        $reservation_start_time = $row['start_time'];
-                        $reservation_end_time = $row['end_time'];
-
-                        $date_converted = date('d-m-Y', strtotime($reservation_date));
-                        $date_written = strftime('%A', strtotime($reservation_date));
-                        $time_converted = date('H:i', strtotime($reservation_start_time)) . " - " . date('H:i', strtotime($reservation_end_time));
                     ?>
                     <tr>
-                        <td><?php echo htmlentities($date_written); ?></td>
-                        <td><?php echo htmlentities($date_converted); ?></td>
-                        <td><?php echo htmlentities($time_converted); ?></td>
+                        <td><?php echo strftime('%A', strtotime(htmlentities($row['date']))); ?></td>
+                        <td><?php echo date('d-m-Y', strtotime(htmlentities($row['date']))); ?></td>
+                        <td><?php echo date('H:i', strtotime(htmlentities($row['start_time']))) . " - " . date('H:i', strtotime(htmlentities($row['end_time']))); ?></td>
                     </tr>
                     <?php } ?>
                     </tbody>
@@ -74,7 +84,12 @@ setlocale(LC_TIME, 'NL_nl');
             <h2><a href="how-to-reserve.php">Nieuwe reservering</a></h2>
             <h2><a href="profile.php">Naar 'Mijn Profiel'</a></h2>
         </div>
-        <?php include_once("main_footer.php"); ?>
+
+        <footer>
+            <hr>
+            <img src="images/syntegon_header_logo.png" alt="Syntegon logo klein">
+            <a class="footerRight" href="logout.php">Uitloggen</a>
+        </footer>
     </body>
 
 </html>

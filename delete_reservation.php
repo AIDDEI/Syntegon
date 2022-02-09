@@ -52,9 +52,25 @@ if (isset($_POST['submit'])) {
 
     <head>
         <title>Reservering <?php echo htmlentities($date); ?> annuleren?</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="images/syntegon_header_logo.png">
     </head>
 
     <body>
+        <nav class="navbar">
+            <a href="home.php"><img class="syntegonNav" src="images/syntegon_logo.png" alt="Syntegon logo volledig"></a>
+            <div class="flex">
+                <a href="how-to-reserve.php"><img class="reservationNav" src="images/plusteken.png" alt="Nieuwe reservering maken icoon"></a>
+                <a href="profile.php" class="smallerWidth"><img class="profileNav" src="images/default_avatar.png"></a>
+            </div>
+        </nav>
+        <hr>
+
         <h2>Weet u zeker dat u uw reservering op <?php echo htmlentities($date); ?> wilt annuleren?</h2>
         <div class="block2">
             <p><?php
@@ -71,7 +87,12 @@ if (isset($_POST['submit'])) {
             <br><br>
             <a href="reservations.php">Nee, breng mij terug</a>
         </div>
-        <?php include_once("main_footer.php"); ?>
+
+        <footer>
+            <hr>
+            <img src="images/syntegon_header_logo.png" alt="Syntegon logo klein">
+            <a class="footerRight" href="logout.php">Uitloggen</a>
+        </footer>
     </body>
 
 </html>

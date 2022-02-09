@@ -4,6 +4,9 @@
 //In the file main_head.php the connection with the database is also made and the check if the user is logged in or not
 include_once("main_head.php");
 
+//Find all departments
+$find_departments = $db->query("SELECT * FROM departments ORDER BY name ASC");
+
 //Set the post-back variables empty at the start
 $department_post = $date = $startTime = $endTime = "";
 
@@ -40,9 +43,25 @@ if(isset($_POST['submit'])){
 
     <head>
         <title>Nieuwe Reservering Maken</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="images/syntegon_header_logo.png">
     </head>
 
     <body>
+        <nav class="navbar">
+            <a href="home.php"><img class="syntegonNav" src="images/syntegon_logo.png" alt="Syntegon logo volledig"></a>
+            <div class="flex">
+                <a href="how-to-reserve.php"><img class="reservationNav" src="images/plusteken.png" alt="Nieuwe reservering maken icoon"></a>
+                <a href="profile.php" class="smallerWidth"><img class="profileNav" src="images/default_avatar.png"></a>
+            </div>
+        </nav>
+        <hr>
+
         <form action="" method="post" enctype="multipart/form-data">
             <div>
                 <label for="department">Afdeling</label>
@@ -51,12 +70,9 @@ if(isset($_POST['submit'])){
                     <?php
                     //Find all departments and echo these as options
                     //Value of the option has to be the id of the department
-                    $find_departments = $db->query("SELECT * FROM departments ORDER BY name ASC");
                     while($row = mysqli_fetch_assoc($find_departments)){
-                        $department = $row['name'];
-                        $department_id = $row['id'];
                         ?>
-                    <option value="<?php echo $department_id; ?>"><?php echo htmlentities($department); ?></option>
+                    <option value="<?php echo $row['id']; ?>"><?php echo htmlentities($row['name']); ?></option>
                     <?php } ?>
                 </select>
                 <span class="errors"><?php echo $errors['department'] ?? ''; ?></span>
@@ -84,7 +100,12 @@ if(isset($_POST['submit'])){
                 <button class="button" type="submit" name="submit">Plaats Kiezen</button>
             </div>
         </form>
-        <?php include_once("main_footer.php"); ?>
+
+        <footer>
+            <hr>
+            <img src="images/syntegon_header_logo.png" alt="Syntegon logo klein">
+            <a class="footerRight" href="logout.php">Uitloggen</a>
+        </footer>
     </body>
 
 </html>
